@@ -21,7 +21,7 @@ function removeNullValues(obj: any) {
   for (const key in obj) {
     if (obj[key] === null) continue
     if (typeof obj[key] === "object") {
-      newObj[key] = removeNullValues(obj[key])
+      if (!["__proto__", "constructor", "prototype"].includes(key)) newObj[key] = removeNullValues(obj[key])
     } else {
       newObj[key] = obj[key]
     }
